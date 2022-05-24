@@ -14,6 +14,7 @@ namespace ngp {
 		"erode <distance> <erosion type [0-2]> : erodes the image\n"
 		"dilate <distance> <dilate type [0-2]> : dilates the image\n"
 		"resize <new width> <new height> <interpolation type [0-4]> : resize the image\n"
+		"canny <minimum threshold value [0-100]>: detects edges of the image\n"
 		"\n";
 
 	Application::Application() {
@@ -92,6 +93,16 @@ namespace ngp {
 			std::cout << WRONG_ARG_COUNT << std::endl;
 			return 1;
 		}
+
+		//Canny
+        if (func_name == "canny") {
+        	if (args.size() == 2) {
+        		filters::canny(s_Mat, parseInt(args[1]));
+        		return 1;
+        	}
+        	std::cout << WRONG_ARG_COUNT << std::endl;
+        	return 1;
+        }
 
 		//Manual
 		if (func_name == "man") {
